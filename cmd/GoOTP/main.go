@@ -31,7 +31,7 @@ func main(){
 	server.GET("/", genHandler.GenerateOTP )
 	server.POST("/authenticate", authHandler.AuthenticateOTP)
 
-	if err := server.Run( ":"+os.Getenv("OTP_SERVER_PORT") ); err != nil {
+	if err := server.Run( ":"+os.Getenv("PORT") ); err != nil {
 
 		log.Fatal( err )
 
