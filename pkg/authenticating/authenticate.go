@@ -6,7 +6,7 @@ import (
 )
 
 type Service interface {
-	Authenticate( phoneNumber string, otp int ) error
+	Authenticate( phoneNumber string, otp string ) error
 }
 
 type authenticateService struct {
@@ -17,7 +17,7 @@ func NewAuthenticateService( repo repository.Authenticate) Service {
 	return &authenticateService{ repo: repo}
 }
 
-func (authService *authenticateService ) Authenticate( phoneNumber string, otp int ) error {
+func (authService *authenticateService ) Authenticate( phoneNumber string, otp string ) error {
 
 	if authService.repo.Authenticate( phoneNumber, otp ) {
 

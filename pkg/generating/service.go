@@ -20,7 +20,8 @@ type service struct {
 func (s *service) GenerateOTP( phoneNumber string ) string {
 
 	rand.Seed( time.Now().Unix() )
-	generatedOTP := rand.Intn(1e6)
+	generatedOTPValue := rand.Intn(1e6)
+	generatedOTP := fmt.Sprintf("%06d",generatedOTPValue)
 
 	s.authRepo.SaveOTP( phoneNumber, generatedOTP )
 
@@ -30,7 +31,7 @@ func (s *service) GenerateOTP( phoneNumber string ) string {
 
 	}
 
-	s.msgRepo.SendSMS(phoneNumber, fmt.Sprintf("%06d",generatedOTP))
+	s.msgRepo.SendSMS(phoneNumber, generatedOTP)
 
 	return fmt.Sprintf( "generated OTP")
 
