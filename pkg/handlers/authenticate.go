@@ -21,7 +21,7 @@ func (authHandler authenticatingHandler) AuthenticateOTP( ctx *gin.Context ) {
 	var mobileNumberWithOTP struct{
 
 		MobileNumber string `json:"number"`
-		Otp          int   `json:"otp"`
+		Otp          string   `json:"otp"`
 
 	}
 	err := ctx.BindJSON( &mobileNumberWithOTP )

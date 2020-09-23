@@ -25,9 +25,9 @@ func NewRistrettoRepository( config *ristretto.Config, ttlCache time.Duration ) 
 
 }
 
-func (r *ristrettoRepository) Authenticate( phoneNumber string, otp int )  bool{
+func (r *ristrettoRepository) Authenticate( phoneNumber string, otp string )  bool{
 
-	if foundOtp, isFound := r.cache.Get( phoneNumber ); isFound && foundOtp.(int) == otp {
+	if foundOtp, isFound := r.cache.Get( phoneNumber ); isFound && foundOtp == otp {
 
 		r.RemoveIfPresent( phoneNumber )
 		return true
@@ -48,7 +48,7 @@ func (r *ristrettoRepository) RemoveIfPresent( phoneNumber string )  bool{
 
 }
 
-func (r *ristrettoRepository) SaveOTP( phoneNumber string, otp int ){
+func (r *ristrettoRepository) SaveOTP( phoneNumber string, otp string ){
 
 	r.RemoveIfPresent( phoneNumber )
 	// setting cost to 0, so that Coster will be ran to find true cost
