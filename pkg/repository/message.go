@@ -14,12 +14,11 @@ type messageRepository struct {
 	urlStr string
 }
 
-func NewMessageRepository( url string) Message {
+func NewMessageRepository(url string) Message {
 	return &messageRepository{urlStr: url}
 }
 
-func (r messageRepository) SendSMS(phoneNumber string, message string)  {
-
+func (r messageRepository) SendSMS(phoneNumber string, message string) {
 
 	msgData := url.Values{}
 	msgData.Set("To", phoneNumber)
@@ -29,7 +28,7 @@ func (r messageRepository) SendSMS(phoneNumber string, message string)  {
 	msgReader := strings.NewReader(msgData.Encode())
 	client := http.Client{Timeout: 5 * time.Second}
 
-	req, _ := http.NewRequest( http.MethodPost, r.urlStr, msgReader )
+	req, _ := http.NewRequest(http.MethodPost, r.urlStr, msgReader)
 	req.SetBasicAuth(os.Getenv("TWILIO_SID"), os.Getenv("TWILIO_AUTH_TOKEN"))
 	req.Header.Add("Accept", "application/json")
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
