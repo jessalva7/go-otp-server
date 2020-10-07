@@ -1,4 +1,4 @@
-module github.com/jessalva/go-otp-server
+module github.com/jessalva7/go-otp-server
 
 go 1.15
 

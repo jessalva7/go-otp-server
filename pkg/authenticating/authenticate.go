@@ -2,7 +2,7 @@ package authenticating
 
 import (
 	"errors"
-	"github.com/jessalva/go-otp-server/pkg/repository"
+	"github.com/jessalva7/go-otp-server/pkg/repository"
 )
 
 type Service interface {
