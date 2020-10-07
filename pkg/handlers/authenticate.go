@@ -3,7 +3,7 @@ package handlers
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/jessalva/go-otp-server/pkg/authenticating"
+	"github.com/jessalva7/go-otp-server/pkg/authenticating"
 )
 
 type authenticatingHandler struct {

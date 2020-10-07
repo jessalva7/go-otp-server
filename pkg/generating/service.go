@@ -2,7 +2,7 @@ package generating
 
 import (
 	"fmt"
-	"github.com/jessalva/go-otp-server/pkg/repository"
+	"github.com/jessalva7/go-otp-server/pkg/repository"
 	"math/rand"
 	"os"
 	"time"

@@ -2,7 +2,7 @@ package handlers
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/jessalva/go-otp-server/pkg/generating"
+	"github.com/jessalva7/go-otp-server/pkg/generating"
 )
 
 type generatingHandler struct {
