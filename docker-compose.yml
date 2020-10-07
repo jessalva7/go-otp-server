@@ -1,0 +1,14 @@
+version: '3.0'
+services:
+  go_otp_server:
+    ports:
+    - 8000:8080
+    build:
+      dockerfile: Dockerfile
+      context: .
+    environment:
+        - TWILIO_URL=https://api.twilio.com/2010-04-01/Accounts/
+        - TWILIO_SID=:P
+        - PORT=8080
+        - TWILIO_NUMBER=B)
+        - TWILIO_AUTH_TOKEN=:D
