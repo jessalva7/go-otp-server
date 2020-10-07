@@ -7,29 +7,29 @@ import (
 )
 
 type ristrettoRepository struct {
-	cache *ristretto.Cache
+	cache    *ristretto.Cache
 	ttlCache time.Duration
 }
 
-func NewRistrettoRepository( config *ristretto.Config, ttlCache time.Duration ) Authenticate {
+func NewRistrettoRepository(config *ristretto.Config, ttlCache time.Duration) Authenticate {
 
 	cache, err := ristretto.NewCache(config)
-	if err != nil{
-		log.Fatal( err.Error() )
+	if err != nil {
+		log.Fatal(err.Error())
 	}
 
 	return &ristrettoRepository{
-		cache: cache,
+		cache:    cache,
 		ttlCache: ttlCache,
 	}
 
 }
 
-func (r *ristrettoRepository) Authenticate( phoneNumber string, otp string )  bool{
+func (r *ristrettoRepository) Authenticate(phoneNumber string, otp string) bool {
 
-	if foundOtp, isFound := r.cache.Get( phoneNumber ); isFound && foundOtp == otp {
+	if foundOtp, isFound := r.cache.Get(phoneNumber); isFound && foundOtp == otp {
 
-		r.RemoveIfPresent( phoneNumber )
+		r.RemoveIfPresent(phoneNumber)
 		return true
 	}
 
@@ -37,10 +37,10 @@ func (r *ristrettoRepository) Authenticate( phoneNumber string, otp string )  bo
 
 }
 
-func (r *ristrettoRepository) RemoveIfPresent( phoneNumber string )  bool{
+func (r *ristrettoRepository) RemoveIfPresent(phoneNumber string) bool {
 
-	if _, isFound := r.cache.Get( phoneNumber ); isFound {
-		r.cache.Del( phoneNumber )
+	if _, isFound := r.cache.Get(phoneNumber); isFound {
+		r.cache.Del(phoneNumber)
 		return true
 	}
 
@@ -48,10 +48,10 @@ func (r *ristrettoRepository) RemoveIfPresent( phoneNumber string )  bool{
 
 }
 
-func (r *ristrettoRepository) SaveOTP( phoneNumber string, otp string ){
+func (r *ristrettoRepository) SaveOTP(phoneNumber string, otp string) {
 
-	r.RemoveIfPresent( phoneNumber )
+	r.RemoveIfPresent(phoneNumber)
 	// setting cost to 0, so that Coster will be ran to find true cost
-	r.cache.SetWithTTL( phoneNumber, otp, 0, r.ttlCache )
+	r.cache.SetWithTTL(phoneNumber, otp, 0, r.ttlCache)
 
 }

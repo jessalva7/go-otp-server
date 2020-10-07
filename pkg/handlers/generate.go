@@ -9,25 +9,24 @@ type generatingHandler struct {
 	genService generating.Service
 }
 
-func NewGeneratingHandler( service generating.Service ) generatingHandler {
+func NewGeneratingHandler(service generating.Service) generatingHandler {
 
-	return generatingHandler{ service }
+	return generatingHandler{service}
 
 }
 
-func (genHandler generatingHandler) GenerateOTP( ctx *gin.Context ) {
+func (genHandler generatingHandler) GenerateOTP(ctx *gin.Context) {
 
 	var mobileNumber string
 
-	err := ctx.BindJSON( &mobileNumber )
+	err := ctx.BindJSON(&mobileNumber)
 	if err != nil {
 
-		ctx.JSON( 400, "Bad Request: Mobile number should be integer" )
+		ctx.JSON(400, "Bad Request: Mobile number should be integer")
 		return
 
 	}
 
-	ctx.JSON(200, genHandler.genService.GenerateOTP( mobileNumber ) )
-
+	ctx.JSON(200, genHandler.genService.GenerateOTP(mobileNumber))
 
 }
