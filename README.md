@@ -17,3 +17,9 @@ TWILIO_AUTH_TOKEN=B)
 ```
 docker run --publish 8000:8080 --env-file ./GoOTPEnv.list --detach --name go-otp jessalva35/go-otp-server:latest
 ```
+
+## Using docker-compose
+
+```
+docker-compose up
+```
